@@ -8,9 +8,10 @@ using API.Extensions;
 using API.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using API.Extensions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers;
+
 
 public class AccountController(AppDbContext context, ITokenService tokenService) : BaseApiController
 {
@@ -35,6 +36,7 @@ public class AccountController(AppDbContext context, ITokenService tokenService)
     }
 
     [HttpPost("login")]
+    [AllowAnonymous]
     public async Task<ActionResult<UserDto>> Login(LoginDto logingDto)
     {
         var user = await context.Users.SingleOrDefaultAsync(x => x.Email == logingDto.Email);
