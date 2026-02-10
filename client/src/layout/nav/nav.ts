@@ -6,19 +6,17 @@ import { AccountService } from '../../core/services/account-service';
   selector: 'app-nav',
   imports: [FormsModule],
   templateUrl: './nav.html',
-  styleUrl: './nav.css',
+  styleUrl: './nav.css'
 })
 export class Nav {
   protected accountService = inject(AccountService)
-  protected creds: any = {};
-
+  protected creds: any = {}
 
   login() {
     this.accountService.login(this.creds).subscribe({
       next: result => {
         console.log(result);
-
-        this.creds = {}
+        this.creds = {};
       },
       error: error => alert(error.message)
     })
@@ -27,5 +25,4 @@ export class Nav {
   logout() {
     this.accountService.logout();
   }
-
 }

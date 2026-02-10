@@ -7,13 +7,12 @@ import { AccountService } from '../../../core/services/account-service';
   selector: 'app-register',
   imports: [FormsModule],
   templateUrl: './register.html',
-  styleUrl: './register.css',
+  styleUrl: './register.css'
 })
 export class Register {
-  private accountService = inject(AccountService)
+  private accountService = inject(AccountService);
   cancelRegister = output<boolean>();
-  protected creds = {} as RegisterCreds
-
+  protected creds = {} as RegisterCreds;
 
   register() {
     this.accountService.register(this.creds).subscribe({
@@ -28,5 +27,4 @@ export class Register {
   cancel() {
     this.cancelRegister.emit(false);
   }
-
 }
