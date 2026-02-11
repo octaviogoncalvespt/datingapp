@@ -19,14 +19,14 @@ export class ToastService {
 
   private createToastElement(
     message: string,
-    alerClass: string,
+    alertClass: string,
     duration = 5000,
   ) {
     const toastContainer = document.getElementById('toast-container');
     if (!toastContainer) return;
 
     const toast = document.createElement('div');
-    toast.classList.add('alert', alerClass, 'shadow-lg');
+    toast.classList.add('alert', alertClass, 'shadow-lg');
     toast.innerHTML = `
     <span>${message}</span>
     <button class="ml-4 btn btn-sm btn-ghost">x</button>
@@ -43,5 +43,21 @@ export class ToastService {
         toastContainer.removeChild(toast);
       }
     }, duration);
+  }
+
+  success(message: string, duration?: number) {
+    this.createToastElement(message, 'alert-success', duration)
+  }
+
+  error(message: string, duration?: number) {
+    this.createToastElement(message, 'alert-error', duration)
+  }
+
+  warning(message: string, duration?: number) {
+    this.createToastElement(message, 'alert-warning', duration)
+  }
+
+  info(message: string, duration?: number) {
+    this.createToastElement(message, 'alert-info', duration)
   }
 }
